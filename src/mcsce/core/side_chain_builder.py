@@ -225,9 +225,10 @@ def create_side_chain(structure, n_trials, temperature, parallel_worker=16, retu
     energies = []
     if return_first_valid:
         # Sequential execution with maximal n_trial times, but return the first valid structure
-        for _ in range(n_trials):
+        for n in range(n_trials):
             conf, succeeded, energy, _ = create_side_chain_structure([structure.coords, beta, None])
             if succeeded:
+                print(f"Trials: {n}")
                 return conf
         return None
     else:
